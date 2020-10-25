@@ -1,5 +1,5 @@
 Developer
-Alok Kulkarni :- alok.kulkarni10@gmail.com / 9975261781
+Alok Kulkarni :- alok.kulkarni10@gmail.com 
 
 Shopcart
 This application provides a Cart management facility .
