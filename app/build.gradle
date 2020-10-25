@@ -1,8 +1,5 @@
 apply plugin: 'com.android.application'
-/*
-apply plugin: 'com.android.databinding'
 apply plugin: 'com.neenbedankt.android-apt'
-*/
 
 
 android {
@@ -15,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.assignment.shoppingcart"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         versionCode 1
@@ -33,7 +30,7 @@ android {
         exclude 'META-INF/LICENSE'
     }
     sourceSets {
-        main { assets.srcDirs = ['src/main/assets', 'src/main/assets/webservice_samples'] }
+        main { assets.srcDirs = ['src/main/assets'] }
     }
     testOptions {
         unitTests.returnDefaultValues = true
@@ -43,12 +40,13 @@ android {
 dependencies {
     final HAMCREST_VERSION = '1.3'
     final MOCKITO_VERSION = '1.10.19'
-
-
+    final DAGGER_VERSION = '2.2'
+    final SUPPORT_LIBRARY_VERSION = '23.4.0'
+    final ESPRESSO_VERSION = '2.2'
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile 'com.android.support:cardview-v7:23.0.1'
+    compile "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
+    compile "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
+    compile "com.android.support:cardview-v7:$SUPPORT_LIBRARY_VERSION"
     compile 'com.jakewharton:butterknife:7.0.1'
     compile([group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.7.3'],
             [group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.7.0'],
@@ -57,14 +55,39 @@ dependencies {
 
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile "com.google.dagger:dagger:$DAGGER_VERSION"
 
+    apt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    provided 'javax.annotation:javax.annotation-api:1.2'
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    testApt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
     testCompile 'junit:junit:4.12'
     testCompile 'com.android.support.test:runner:0.4.1'
     testCompile 'com.android.support.test:rules:0.4.1'
-    testCompile 'com.android.support:support-annotations:23.1.1'
+    testCompile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
     testCompile "org.hamcrest:hamcrest-core:$HAMCREST_VERSION"
     testCompile "org.hamcrest:hamcrest-library:$HAMCREST_VERSION"
     testCompile "org.hamcrest:hamcrest-integration:$HAMCREST_VERSION"
     testCompile "org.mockito:mockito-core:$MOCKITO_VERSION"
 
+    androidTestApt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    androidTestCompile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
+    androidTestCompile "org.mockito:mockito-core:$MOCKITO_VERSION"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION") {
+        // Necessary if your app targets Marshmallow (since Espresso
+        // hasn't moved to Marshmallow yet)
+        exclude group: 'com.android.support', module: 'support-annotations'
+
+    }
+    androidTestCompile("com.android.support.test.espresso:espresso-contrib:$ESPRESSO_VERSION") {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
+    androidTestCompile('com.android.support.test:runner:0.3') {
+        // Necessary if your app targets Marshmallow (since the test runner
+        // hasn't moved to Marshmallow yet)
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
 }

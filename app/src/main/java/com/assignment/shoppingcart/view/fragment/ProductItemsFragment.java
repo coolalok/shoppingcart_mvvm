@@ -7,33 +7,30 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import com.assignment.shoppingcart.R;
 import com.assignment.shoppingcart.model.Category;
 import com.assignment.shoppingcart.model.Product;
 import com.assignment.shoppingcart.view.adapter.ProductsAdapter;
+
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by Alok.Kulkarni on 4/26/2016.
+ * Fragment that displays a list of products. Pass the selected Category to this Fragment
  */
-public class ProductsFragment extends Fragment {
-
-    @Bind(R.id.recycler_products)
-    RecyclerView mListProducts;
-
+public class ProductItemsFragment extends Fragment {
 
     public static final String ARG_CATEGORY = "ARG_CATEGORY";
-
+    @Bind(R.id.recycler_products)
+    RecyclerView mListProducts;
     private ProductsAdapter mProductsAdapter;
     private Category mCategory;
 
-    public static ProductsFragment newInstance(Category category) {
-        ProductsFragment productsHomeFragment = new ProductsFragment();
+    public static ProductItemsFragment newInstance(Category category) {
+        ProductItemsFragment productsHomeFragment = new ProductItemsFragment();
         Bundle args = new Bundle();
         args.putParcelable(ARG_CATEGORY, category);
         productsHomeFragment.setArguments(args);
@@ -46,7 +43,7 @@ public class ProductsFragment extends Fragment {
         Bundle bundle = getArguments();
         if (bundle != null)
             mCategory = bundle.getParcelable(ARG_CATEGORY);
-        mProductsAdapter = new ProductsAdapter(getActivity());
+        mProductsAdapter = new ProductsAdapter();
     }
 
     @Override
@@ -59,10 +56,18 @@ public class ProductsFragment extends Fragment {
         return fragmentView;
     }
 
+    private void setupRecyclerView() {
+        mListProducts.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mListProducts.setHasFixedSize(true);
+        mListProducts.setAdapter(mProductsAdapter);
+
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
     }
+
 
     private void loadProducts() {
         if (mCategory == null) {
@@ -71,14 +76,6 @@ public class ProductsFragment extends Fragment {
         }
         List<Product> products = mCategory.getProducts();
         mProductsAdapter.setItems(products);
-    }
-
-
-    private void setupRecyclerView() {
-        mListProducts.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mListProducts.setHasFixedSize(true);
-        mListProducts.setAdapter(mProductsAdapter);
-
     }
 
 

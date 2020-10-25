@@ -8,12 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Core class for handling Cart operations.
+ * Core class for handling Cart operations in memory.
  */
-//This class should only be accessible from current package. Also it cannot be inherited
+//This class should only be accessible from CartManager.
 final class Cart {
 
-    //ToDo Use CartItem instead of Product
     private ArrayList<Product> mCartProducts = new ArrayList<Product>();
 
 
@@ -31,6 +30,13 @@ final class Cart {
         return mCartProducts != null ? mCartProducts.get(position) : null;
     }
 
+    /**
+     * Adds a product to the cart
+     *
+     * @param product Product to add to the Cart
+     * @return True if product was successfully added to memory Cart
+     * @throws InvalidPriceException Exception will be thrown if price is less that 0
+     */
     boolean addProduct(Product product) throws InvalidPriceException {
         if (mCartProducts != null && !mCartProducts.contains(product)) {
             if (product.getPrice() < 0) {
@@ -60,7 +66,7 @@ final class Cart {
 
     }
 
-    String saveCart() {
+    String getSaveCartDataString() {
         int size = 0;
         if (mCartProducts != null && (size = mCartProducts.size()) > 0) {
             try {
@@ -73,7 +79,7 @@ final class Cart {
         return null;
     }
 
-    void loadCart(String jsonCart) {
+    void loadCartFromDataString(String jsonCart) {
         try {
             Cart cartObject = JsonHelper.getInstance().fromJsonString(jsonCart, Cart.class);
             setCartProducts(cartObject.getCartProducts());

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -11,12 +11,12 @@
 
     <RelativeLayout
         android:id="@+id/root"
-        android:background="?android:attr/selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="@dimen/list_item_height"
-        android:paddingLeft="@dimen/standard_margin"
-        android:paddingRight="@dimen/standard_margin"
-        android:clickable="true" android:onClick="@{viewModel.onClickItem}">
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:onClick="@{viewModel.onClickItem}"
+        android:paddingLeft="@dimen/standard_margin">
 
         <ImageView
             android:id="@+id/ivProduct"
@@ -27,11 +27,20 @@
 
         <TextView
             android:id="@+id/tvProduct"
+            style="@style/StandardPrimaryText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/list_item_left_padding"
-            android:text="@{viewModel.ProductName}"
-            android:textSize="@dimen/text_body" />
+            android:layout_marginLeft="@dimen/list_item_left_margin"
+            android:layout_marginRight="@dimen/standard_margin"
+            android:text="@{viewModel.ProductName}" />
+
+        <LinearLayout
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_divider_height"
+            android:layout_alignParentBottom="true"
+            android:background="@color/list_item_divider_color"
+            android:orientation="horizontal" />
     </RelativeLayout>
 </layout>

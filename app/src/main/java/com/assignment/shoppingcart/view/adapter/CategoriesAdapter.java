@@ -16,7 +16,7 @@ import java.util.List;
 
 
 /**
- * Created by Alok.Kulkarni on 4/26/2016.
+ * Adapter class for displaying product categories
  */
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.BindingHolder> {
     private List<Category> mCategories;
@@ -40,7 +40,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Bi
     @Override
     public void onBindViewHolder(BindingHolder holder, int position) {
         ItemCategoryBinding categoryBinding = holder.binding;
-        categoryBinding.setViewModel(new CategoryViewModel(mContext, mCategories.get(position)));
+        categoryBinding.setViewModel(new CategoryViewModel(mCategories.get(position)));
     }
 
     @Override

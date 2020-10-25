@@ -2,7 +2,6 @@ package com.assignment.shoppingcart.events;
 
 
 import com.assignment.shoppingcart.model.ShoppingData;
-import com.assignment.shoppingcart.webservice.ErrorCode;
 
 /**
  * Created by Alok.Kulkarni on 4/30/2016.

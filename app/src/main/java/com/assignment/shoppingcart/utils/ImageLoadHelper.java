@@ -6,8 +6,7 @@ import com.assignment.shoppingcart.R;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by Alok.Kulkarni on 4/29/2016.
- * Helper class for handling Image display. Acts as a wrapper over Image load library
+ * Utility class for handling Image display. Acts as a wrapper over Image load library
  */
 //ToDo Create an inteface for Image Loader. Create a class to handle image loading using Picasso.
 public class ImageLoadHelper {

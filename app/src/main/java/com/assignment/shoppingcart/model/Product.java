@@ -3,14 +3,20 @@ package com.assignment.shoppingcart.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
-import java.util.List;
-
 /**
- * Created by Alok.Kulkarni on 4/25/2016.
+ * Model class that represents a Product that can be viewed / purchased
  */
 public class Product implements Parcelable {
 
+    public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
+        public Product createFromParcel(Parcel source) {
+            return new Product(source);
+        }
+
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
     private String id;
     private String name;
     private float price;
@@ -18,6 +24,14 @@ public class Product implements Parcelable {
 
     //Dummy Constuctor for avoid Json Parsing error
     public Product() {
+    }
+
+    protected Product(Parcel in) {
+
+        this.id = in.readString();
+        this.name = in.readString();
+        this.image = in.readString();
+        this.price = in.readFloat();
     }
 
     public String getId() {
@@ -36,7 +50,6 @@ public class Product implements Parcelable {
         this.name = name;
     }
 
-
     public String getImage() {
         return image;
     }
@@ -44,7 +57,6 @@ public class Product implements Parcelable {
     public void setImage(String image) {
         this.image = image;
     }
-
 
     public float getPrice() {
         return price;
@@ -61,9 +73,8 @@ public class Product implements Parcelable {
 
         Product product = (Product) object;
 
-        if (id != null ? !id.equals(product.id) : product.id != null) return false;
+        return id != null ? id.equals(product.id) : product.id == null;
 
-        return true;
     }
 
     @Override
@@ -85,22 +96,4 @@ public class Product implements Parcelable {
         dest.writeString(this.image);
         dest.writeFloat(this.price);
     }
-
-    protected Product(Parcel in) {
-
-        this.id = in.readString();
-        this.name = in.readString();
-        this.image = in.readString();
-        this.price = in.readFloat();
-    }
-
-    public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
-        public Product createFromParcel(Parcel source) {
-            return new Product(source);
-        }
-
-        public Product[] newArray(int size) {
-            return new Product[size];
-        }
-    };
 }

@@ -19,13 +19,13 @@ import butterknife.Bind;
 
 
 /**
- * Created by Alok.Kulkarni on 4/26/2016.
+ * Adapter class for displaying Cart Items
  */
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.BindingHolder> {
-    private List<Product> mProducts;
-    private Context mContext;
     @Bind(R.id.coordinatorLayout)
     View coordinatorLayout;
+    private List<Product> mProducts;
+    private Context mContext;
 
     public CartAdapter(Context context) {
         mContext = context;

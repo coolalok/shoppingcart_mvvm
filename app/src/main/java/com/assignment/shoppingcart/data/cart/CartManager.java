@@ -2,7 +2,6 @@ package com.assignment.shoppingcart.data.cart;
 
 import android.content.Context;
 
-import com.assignment.shoppingcart.ShoppingCartApplication;
 import com.assignment.shoppingcart.events.CartAddEvent;
 import com.assignment.shoppingcart.events.CartLoadEvent;
 import com.assignment.shoppingcart.events.CartRemoveEvent;
@@ -20,18 +19,10 @@ import java.util.ArrayList;
  */
 public class CartManager {
 
+    private static CartManager sCartManager = new CartManager();
     private CartStorage mCartStorage;
     private Cart mCart;
-    private static CartManager sCartManager = new CartManager();
     private boolean bCartLoaded;
-
-    public class CartUpdateEventConstants {
-        public static final int ADD_TO_CART = 1;
-        public static final int REMOVE_FROM_CART = 2;
-        public static final int REMOVE_ALL_FROM_CART = 3;
-        public static final int LOAD_CART = 4;
-    }
-
 
     private CartManager() {
         mCart = new Cart();
@@ -123,9 +114,9 @@ public class CartManager {
     }
 
     /**
-     * Adds a list of
+     * Adds a list of products to the Cart
      *
-     * @param cartProducts
+     * @param cartProducts Cart items to add to Cart
      */
     public void setCartProducts(ArrayList<Product> cartProducts) {
         mCart.setCartProducts(cartProducts);
@@ -139,7 +130,7 @@ public class CartManager {
      * Saves the Cart data to persistent storage
      */
     private void saveCart() {
-        String jsonCartData = mCart.saveCart();
+        String jsonCartData = mCart.getSaveCartDataString();
         mCartStorage.store(CartStorage.CART_DATA, jsonCartData);
     }
 
@@ -147,19 +138,18 @@ public class CartManager {
      * Cart should be loaded before doing any further processing. Once cart is loaded , it fires a CartUpdateEvent that interested Object can register.
      */
     public synchronized void loadCart() {
+        CartLoadEvent cartLoadEvent = new CartLoadEvent();
         if (bCartLoaded) {
-            CartLoadEvent event = new CartLoadEvent();
-            EventBus.getDefault().post(event);
+            EventBus.getDefault().post(cartLoadEvent);
             return;
         }
         String jsonCartData = mCartStorage.load(CartStorage.CART_DATA);
         if (jsonCartData == null)
             return;
-        mCart.loadCart(jsonCartData);
-        processCartUpdate(CartUpdateEventConstants.LOAD_CART);
 
-        CartLoadEvent event = new CartLoadEvent();
-        EventBus.getDefault().post(event);
+        mCart.loadCartFromDataString(jsonCartData);
+        processCartUpdate(CartUpdateEventConstants.LOAD_CART);
+        EventBus.getDefault().post(cartLoadEvent);
         bCartLoaded = true;
     }
 
@@ -192,5 +182,12 @@ public class CartManager {
      */
     public Float getTotalPrice() {
         return mCart.calculateCartPrice();
+    }
+
+    public class CartUpdateEventConstants {
+        public static final int ADD_TO_CART = 1;
+        public static final int REMOVE_FROM_CART = 2;
+        public static final int REMOVE_ALL_FROM_CART = 3;
+        public static final int LOAD_CART = 4;
     }
 }

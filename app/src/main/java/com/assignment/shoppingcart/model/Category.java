@@ -7,10 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Alok.Kulkarni on 4/26/2016.
+ * Model class that represents the entire shopping data response
  */
 public class Category implements Parcelable {
 
+    public static final Parcelable.Creator<Category> CREATOR = new Parcelable.Creator<Category>() {
+        public Category createFromParcel(Parcel source) {
+            return new Category(source);
+        }
+
+        public Category[] newArray(int size) {
+            return new Category[size];
+        }
+    };
     private String id;
     private String name;
     private String image;
@@ -20,6 +29,17 @@ public class Category implements Parcelable {
     public Category() {
     }
 
+
+    private Category(Parcel in) {
+
+        this.id = in.readString();
+        this.name = in.readString();
+        this.image = in.readString();
+        this.products = new ArrayList<>();
+        in.readTypedList(this.products, Product.CREATOR);
+
+    }
+
     public String getId() {
         return id;
     }
@@ -27,7 +47,6 @@ public class Category implements Parcelable {
     public void setId(String id) {
         this.id = id;
     }
-
 
     public String getName() {
         return name;
@@ -66,25 +85,5 @@ public class Category implements Parcelable {
         dest.writeTypedList(this.products);
 
     }
-
-    private Category(Parcel in) {
-
-        this.id = in.readString();
-        this.name = in.readString();
-        this.image = in.readString();
-        this.products = new ArrayList<>();
-        in.readTypedList(this.products, Product.CREATOR);
-
-    }
-
-    public static final Parcelable.Creator<Category> CREATOR = new Parcelable.Creator<Category>() {
-        public Category createFromParcel(Parcel source) {
-            return new Category(source);
-        }
-
-        public Category[] newArray(int size) {
-            return new Category[size];
-        }
-    };
 
 }

@@ -4,23 +4,40 @@ import android.app.Application;
 import android.content.Context;
 
 import com.assignment.shoppingcart.data.cart.CartManager;
+import com.assignment.shoppingcart.injection.component.ApplicationComponent;
+import com.assignment.shoppingcart.injection.component.DaggerApplicationComponent;
+import com.assignment.shoppingcart.injection.module.ApplicationModule;
 
 /**
- * Created by Alok.Kulkarni on 4/26/2016.
+ * Application class
  */
 public class ShoppingCartApplication extends Application {
     private static Context mContext;
+    ApplicationComponent mApplicationComponent;
+
+
+    public static ShoppingCartApplication get(Context context) {
+        return (ShoppingCartApplication) context.getApplicationContext();
+    }
+
+    public ApplicationComponent getComponent() {
+        return mApplicationComponent;
+    }
+
+    // Needed to replace the component with a test specific one
+    public void setComponent(ApplicationComponent applicationComponent) {
+        mApplicationComponent = applicationComponent;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         mContext = this;
-        CartManager.getInstance().init(mContext);
-    }
+        mApplicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this))
+                .build();
 
-    //ToDo Fix issue of keeping static reference to Context.
-    public static Context getAppContext() {
-        return mContext;
+        CartManager.getInstance().init(mContext);
     }
 
 

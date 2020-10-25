@@ -1,7 +1,6 @@
 package com.assignment.shoppingcart.events;
 
 
-import com.assignment.shoppingcart.model.Category;
 import com.assignment.shoppingcart.model.Product;
 
 /**

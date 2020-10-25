@@ -3,9 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="dark_grey">#424242</color>
     <color name="white">#FFFFFF</color>
-
+    <color name="black">#000000</color>
     <color name="button_pressed">#2c6dc0</color>
     <color name="button_normal">#4081D8</color>
 

@@ -11,17 +11,22 @@ import com.assignment.shoppingcart.utils.ImageLoadHelper;
 import com.assignment.shoppingcart.view.activity.ShopActivity;
 
 /**
- * Created by Alok.Kulkarni on 4/29/2016.
+ * ViewModel class for a Cart Item
  */
 public class CartItemViewModel {
 
 
-    private Product mProduct;
     private final Context mContext;
+    private Product mProduct;
 
     public CartItemViewModel(Context context, Product product) {
         this.mProduct = product;
         this.mContext = context;
+    }
+
+    @BindingAdapter({"bind:imageUrl"})
+    public static void loadImage(ImageView view, String imageUrl) {
+        ImageLoadHelper.loadImage(view, imageUrl);
     }
 
     public float getPrice() {
@@ -34,12 +39,6 @@ public class CartItemViewModel {
 
     public String getImageUrl() {
         return mProduct.getImage();
-    }
-
-
-    @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
-        ImageLoadHelper.loadImage(view, imageUrl);
     }
 
     public View.OnClickListener onClickItem() {

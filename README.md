@@ -1,5 +1,5 @@
 Developer
-Alok Kulkarni :- alok.kulkarni10@gmail.com
+Alok Kulkarni :- alok.kulkarni10@gmail.com / 9975261781
 
 Shopcart
 This application provides a Cart management facility .
@@ -14,6 +14,7 @@ Application follows MVVM architecture.
 Android Data Binding has been extensively used.
 Event notification between Model, View and ViewModel is done using EventBus library.
 Test data is stored as part of assets directory in the form of JSON string and images.
+Android Testing uses dependency injection using Dagger2 for some components
 Cart is preserved using Json string stored in SharedPreferences.
 
 Libraries used
@@ -23,4 +24,4 @@ Picasso
 Jackson
 ButterKnife
 EventBus
-
+Dagger2

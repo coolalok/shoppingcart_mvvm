@@ -1,6 +1,5 @@
 package com.assignment.shoppingcart.view.adapter;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,14 +15,12 @@ import java.util.List;
 
 
 /**
- * Created by Alok.Kulkarni on 4/26/2016.
+ * Adapter class for displaying products.
  */
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.BindingHolder> {
     private List<Product> mProducts;
-    private Context mContext;
 
-    public ProductsAdapter(Context context) {
-        mContext = context;
+    public ProductsAdapter() {
         mProducts = new ArrayList<>();
     }
 
@@ -40,7 +37,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Bindin
     @Override
     public void onBindViewHolder(BindingHolder holder, int position) {
         ItemProductBinding productBinding = holder.binding;
-        productBinding.setViewModel(new ProductViewModel(mContext, mProducts.get(position)));
+        productBinding.setViewModel(new ProductViewModel(mProducts.get(position)));
     }
 
     @Override

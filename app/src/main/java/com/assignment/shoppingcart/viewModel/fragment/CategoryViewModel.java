@@ -1,6 +1,5 @@
 package com.assignment.shoppingcart.viewModel.fragment;
 
-import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.BindingAdapter;
 import android.view.View;
@@ -9,19 +8,23 @@ import android.widget.ImageView;
 import com.assignment.shoppingcart.events.CategorySelectEvent;
 import com.assignment.shoppingcart.model.Category;
 import com.assignment.shoppingcart.utils.ImageLoadHelper;
+import com.assignment.shoppingcart.viewModel.ViewModel;
 
 import org.greenrobot.eventbus.EventBus;
 
 /**
- * Created by Alok.Kulkarni on 4/28/2016.
+ * ViewModel class for a Categories
  */
-public class CategoryViewModel extends BaseObservable {
-    private final Context mContext;
+public class CategoryViewModel extends BaseObservable implements ViewModel {
     private Category mCategory;
 
-    public CategoryViewModel(Context context, Category category) {
-        this.mContext = context;
+    public CategoryViewModel(Category category) {
         this.mCategory = category;
+    }
+
+    @BindingAdapter({"bind:imageUrl"})
+    public static void loadImage(ImageView view, String imageUrl) {
+        ImageLoadHelper.loadImage(view, imageUrl);
     }
 
     public String getCategoryName() {
@@ -30,11 +33,6 @@ public class CategoryViewModel extends BaseObservable {
 
     public String getImageUrl() {
         return mCategory.getImage();
-    }
-
-    @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
-        ImageLoadHelper.loadImage(view, imageUrl);
     }
 
     public View.OnClickListener onClickItem() {
@@ -51,4 +49,8 @@ public class CategoryViewModel extends BaseObservable {
     }
 
 
+    @Override
+    public void destroy() {
+
+    }
 }

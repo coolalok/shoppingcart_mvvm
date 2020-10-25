@@ -2,11 +2,10 @@ package com.assignment.shoppingcart.storage;
 
 
 import android.content.Context;
-
-import com.assignment.shoppingcart.ShoppingCartApplication;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 /**
- * Created by Alok.Kulkarni on 5/1/2016.
  * Wrapper class for actual persistent storage
  */
 public class CartStorage {
@@ -14,7 +13,8 @@ public class CartStorage {
     private DataStorage mDataStorage;
 
     public CartStorage(Context context) {
-        mDataStorage = new DataStorage(context);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        mDataStorage = new DataStorage(preferences);
     }
 
 

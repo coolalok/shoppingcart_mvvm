@@ -3,7 +3,7 @@ package com.assignment.shoppingcart.model;
 import java.util.List;
 
 /**
- * Created by Alok.Kulkarni on 4/26/2016.
+ * Model class for the Shopping data that is received from Web service
  */
 public class ShoppingData {
 

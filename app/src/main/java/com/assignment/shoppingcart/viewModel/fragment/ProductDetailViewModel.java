@@ -15,23 +15,23 @@ import com.assignment.shoppingcart.events.CartRemoveEvent;
 import com.assignment.shoppingcart.model.Product;
 import com.assignment.shoppingcart.utils.ImageLoadHelper;
 import com.assignment.shoppingcart.view.activity.CartActivity;
+import com.assignment.shoppingcart.viewModel.ViewModel;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 /**
- * Created by Alok.Kulkarni on 4/28/2016.
+ * ViewModel class for a Product details
  */
-public class ProductDetailViewModel extends BaseObservable {
+public class ProductDetailViewModel extends BaseObservable implements ViewModel {
     private final String mStrGoToCart;
     private final String mStrAddToCart;
     private final String mStrAddingToCart;
-    private Product mProduct;
-
-    private Context mContext;
     public ObservableField<String> cartButtonText;
     public ObservableBoolean isAdded;
+    private Product mProduct;
+    private Context mContext;
     private boolean bAddingToCart;
 
     public ProductDetailViewModel(Context context, Product product) {
@@ -44,6 +44,11 @@ public class ProductDetailViewModel extends BaseObservable {
         cartButtonText = new ObservableField<String>();
         isAdded = new ObservableBoolean();
         refreshViews();
+    }
+
+    @BindingAdapter({"bind:imageUrl"})
+    public static void loadImage(ImageView view, String imageUrl) {
+        ImageLoadHelper.loadImage(view, imageUrl);
     }
 
     /**
@@ -62,14 +67,8 @@ public class ProductDetailViewModel extends BaseObservable {
         return mProduct.getPrice();
     }
 
-
     public String getImageUrl() {
         return mProduct.getImage();
-    }
-
-    @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
-        ImageLoadHelper.loadImage(view, imageUrl);
     }
 
     public View.OnClickListener onClickAddItem() {
@@ -114,7 +113,10 @@ public class ProductDetailViewModel extends BaseObservable {
             cartButtonText.set(mStrAddToCart);
             isAdded.set(false);
         }
-
     }
 
+    @Override
+    public void destroy() {
+
+    }
 }

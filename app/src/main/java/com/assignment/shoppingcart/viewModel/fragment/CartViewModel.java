@@ -1,6 +1,5 @@
 package com.assignment.shoppingcart.viewModel.fragment;
 
-import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
@@ -16,12 +15,12 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 /**
- * Created by Alok.Kulkarni on 4/28/2016.
+ * ViewModel class for a entire Cart
  */
 public class CartViewModel extends BaseObservable implements ViewModel {
     private Float totalPrice;
 
-    public CartViewModel(Context context) {
+    public CartViewModel() {
         EventBus.getDefault().register(this);
         CartManager.getInstance().loadCart();
     }

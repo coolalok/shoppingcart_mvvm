@@ -19,7 +19,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 /**
- * Created by Alok.Kulkarni on 4/26/2016.
+ * Fragment class that displays the Product details. User can add Products to cart and view the product in the Cart
  */
 public class ProductDetailFragment extends Fragment {
 
@@ -56,7 +56,6 @@ public class ProductDetailFragment extends Fragment {
         return rootView;
     }
 
-    //ToDo Create a separate event to show Snackbar and fire that event from ViewModel
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(CartAddEvent event) {
         Snackbar.make(rootView, R.string.product_added_to_cart_text, Snackbar.LENGTH_SHORT).show();

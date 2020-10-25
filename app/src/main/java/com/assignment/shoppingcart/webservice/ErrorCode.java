@@ -1,7 +1,7 @@
 package com.assignment.shoppingcart.webservice;
 
 /**
- * Created by Alok.Kulkarni on 5/1/2016.
+ * Contains mapping of Error codes for application
  */
 public class ErrorCode {
     public static final int ERROR_NONE = 0;

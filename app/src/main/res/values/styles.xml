@@ -15,18 +15,46 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="StandardTextPrimaryDarkBackground">
+    <style name="SecondaryText">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
 
+    <style name="PrimaryText">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="StandardSecondaryText" parent="SecondaryText">
+        <item name="android:textSize">@dimen/text_body</item>
+    </style>
+
+    <style name="MediumSecondaryText" parent="SecondaryText">
+        <item name="android:textSize">@dimen/text_large_body</item>
+    </style>
+
+    <style name="TitleSecondaryText" parent="SecondaryText">
+        <item name="android:textSize">@dimen/text_title</item>
+    </style>
+
+    <style name="StandardPrimaryText" parent="PrimaryText">
+        <item name="android:textSize">@dimen/text_body</item>
+    </style>
+
+    <style name="TitlePrimaryText" parent="PrimaryText">
+        <item name="android:textSize">@dimen/text_title</item>
+    </style>
+
+    <style name="MediumPrimaryText" parent="PrimaryText">
+        <item name="android:textSize">@dimen/text_large_body</item>
     </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="style_blue_btn" >
+    <!--Button Style-->
+    <style name="style_blue_btn">
         <item name="android:background">@drawable/dark_blue_button_selector</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:layout_height">@dimen/standard_button_height</item>
         <item name="android:textSize">@dimen/standard_button_text_size</item>
     </style>
+
+
 </resources>

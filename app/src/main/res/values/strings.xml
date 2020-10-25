@@ -3,19 +3,20 @@
 
     <string name="app_title">Shopcart</string>
     <string name="cart_title">Cart</string>
-    <string name="action_cart">View Cart</string>
+    <string name="action_view_cart">View Cart</string>
 
     <!--Cart Card-->
     <string name="remove_button_text">Remove</string>
 
     <string name="product_name_text">Product Name :</string>
-    <string name="product_price_text">Product Price Rs :</string>
+    <string name="product_price_text">Product Price :</string>
 
     <string name="add_to_cart_text">ADD TO CART</string>
     <string name="adding_to_cart_text">ADDING TO CART</string>
     <string name="go_to_cart_text">GO TO CART</string>
     <string name="product_added_to_cart_text">Product added to cart</string>
-    <string name="total_price_text">Total Price Rs :</string>
+    <string name="total_price_text">Total Price :</string>
+    <string name="price_denomination_symbol">Rs</string>
 
 
 </resources>

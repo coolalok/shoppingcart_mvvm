@@ -1,6 +1,5 @@
 package com.assignment.shoppingcart.viewModel.fragment;
 
-import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.BindingAdapter;
 import android.view.View;
@@ -9,19 +8,23 @@ import android.widget.ImageView;
 import com.assignment.shoppingcart.events.ProductSelectEvent;
 import com.assignment.shoppingcart.model.Product;
 import com.assignment.shoppingcart.utils.ImageLoadHelper;
+import com.assignment.shoppingcart.viewModel.ViewModel;
 
 import org.greenrobot.eventbus.EventBus;
 
 /**
- * Created by Alok.Kulkarni on 4/28/2016.
+ * ViewModel class for a Product
  */
-public class ProductViewModel extends BaseObservable {
+public class ProductViewModel extends BaseObservable implements ViewModel {
     private Product mProduct;
-    private Context mContext;
 
-    public ProductViewModel(Context context, Product product) {
-        this.mContext = context;
+    public ProductViewModel(Product product) {
         this.mProduct = product;
+    }
+
+    @BindingAdapter({"bind:imageUrl"})
+    public static void loadImage(ImageView view, String imageUrl) {
+        ImageLoadHelper.loadImage(view, imageUrl);
     }
 
     public String getProductName() {
@@ -32,14 +35,8 @@ public class ProductViewModel extends BaseObservable {
         return mProduct.getPrice();
     }
 
-
     public String getImageUrl() {
         return mProduct.getImage();
-    }
-
-    @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
-        ImageLoadHelper.loadImage(view, imageUrl);
     }
 
     public View.OnClickListener onClickItem() {
@@ -55,4 +52,8 @@ public class ProductViewModel extends BaseObservable {
         EventBus.getDefault().post(new ProductSelectEvent(mProduct));
     }
 
+    @Override
+    public void destroy() {
+
+    }
 }

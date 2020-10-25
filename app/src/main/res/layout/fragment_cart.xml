@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -16,29 +15,35 @@
         <RelativeLayout
             android:id="@+id/cartSummaryLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/price_component_height"
             android:background="@color/colorPrimaryDark"
             android:gravity="center_vertical"
-            android:paddingBottom="@dimen/standard_margin"
-            android:paddingLeft="@dimen/standard_margin"
-            android:paddingTop="@dimen/standard_margin">
+            android:paddingLeft="@dimen/standard_margin">
 
             <TextView
                 android:id="@+id/tvTotalPrice"
+                style="@style/MediumSecondaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/total_price_text"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/white" />
+                android:text="@string/total_price_text" />
 
             <TextView
-                android:id="@+id/tvTotalPriceValue"
+                android:id="@+id/tvPriceDenomination"
+                style="@style/MediumSecondaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvTotalPrice"
-                android:text="@{String.valueOf((Float)viewModel.TotalPrice)}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/white" />
+                android:text="@string/price_denomination_symbol" />
+
+            <TextView
+                android:id="@+id/tvTotalPriceValue"
+                style="@style/MediumSecondaryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvTotalPrice"
+                android:layout_marginLeft="@dimen/standard_margin"
+                android:layout_toRightOf="@id/tvPriceDenomination"
+                android:text="@{String.valueOf((Float)viewModel.TotalPrice)}" />
         </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView

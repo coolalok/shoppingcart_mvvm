@@ -1,0 +1,54 @@
+{
+  "categories": [
+    {
+      "id": "ELECTRONICS",
+      "name": "Electronics",
+      "image": "file:///android_asset/electronics/electronics.jpg",
+      "products": [
+        {
+          "id": "E_001",
+          "name": "Television",
+          "price": 10000,
+          "image": "file:///android_asset/electronics/television.jpg"
+        },
+        {
+          "id": "E_002",
+          "name": "Vacuum Cleaner",
+          "price": 2000,
+          "image": "file:///android_asset/electronics/vacuum_cleaner.jpg"
+        },
+        {
+          "id": "E_003",
+          "name": "Microwave",
+          "price": 12000,
+          "image": "file:///android_asset/electronics/microwave.jpg"
+        }
+      ]
+    },
+    {
+      "id": "FURNITURE",
+      "name": "Furniture",
+      "image": "file:///android_asset/furniture/furniture.jpg",
+      "products": [
+        {
+          "id": "F_001",
+          "name": "Computer Table",
+          "price": 8000,
+          "image": "file:///android_asset/furniture/table.jpg"
+        },
+        {
+          "id": "F_002",
+          "name": "Almirah",
+          "price": 25000,
+          "image": "file:///android_asset/furniture/almirah.jpg"
+        },
+        {
+          "id": "F_003",
+          "name": "Chair",
+          "price": 4000,
+          "image": "file:///android_asset/furniture/chair.jpg"
+        }
+      ]
+    }
+  ]
+}

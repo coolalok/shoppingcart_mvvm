@@ -12,6 +12,9 @@ import com.assignment.shoppingcart.databinding.ActivityCartBinding;
 import com.assignment.shoppingcart.view.fragment.CartItemsFragment;
 import com.assignment.shoppingcart.viewModel.activity.CartActivityViewModel;
 
+/**
+ * Displays the user's current cart
+ */
 public class CartActivity extends BaseActivity {
     private ActivityCartBinding mBinding;
     private CartActivityViewModel viewModel;

@@ -18,7 +18,7 @@ import com.assignment.shoppingcart.model.Category;
 import com.assignment.shoppingcart.model.Product;
 import com.assignment.shoppingcart.view.fragment.CategoriesHomeFragment;
 import com.assignment.shoppingcart.view.fragment.ProductDetailFragment;
-import com.assignment.shoppingcart.view.fragment.ProductsFragment;
+import com.assignment.shoppingcart.view.fragment.ProductItemsFragment;
 import com.assignment.shoppingcart.viewModel.activity.ShopActivityViewModel;
 
 import org.greenrobot.eventbus.EventBus;
@@ -56,18 +56,26 @@ public class ShopActivity extends BaseActivity {
         setSupportActionBar(mBinding.toolbar);
         setupToolbar();
 
-        Intent intent = getIntent();
-        String screenName = intent.getStringExtra(EXTRA_SCREEN_NAME);
 
-        if (screenName != null && screenName.equals(EXTRA_PRODUCT_FRAGMENT)) {
-            Parcelable parcelable = intent.getParcelableExtra(EXTRA_SCREEN_DATA);
-            Product product = (Product) parcelable;
-            addProductDetailFragment(product);
-        } else if (savedInstanceState == null)
-            addCategoriesFragment();
+        if (savedInstanceState == null) {
+            launchIntentBasedScreen();
+        }
 
     }
 
+    private void launchIntentBasedScreen() {
+        Intent intent = getIntent();
+        String screenName = intent.getStringExtra(EXTRA_SCREEN_NAME);
+        if (screenName != null && screenName.equals(EXTRA_PRODUCT_FRAGMENT)) {
+            //Check if intent contains information for launching ProductDetailFragment
+            Parcelable parcelable = intent.getParcelableExtra(EXTRA_SCREEN_DATA);
+            Product product = (Product) parcelable;
+            addProductDetailFragment(product);
+        } else {
+            //Fresh Start
+            addCategoriesFragment();
+        }
+    }
 
     @Override
     protected void onPause() {
@@ -144,7 +152,7 @@ public class ShopActivity extends BaseActivity {
     }
 
     private void addProductsFragment(Category category) {
-        Fragment productsFragment = ProductsFragment.newInstance(category);
+        Fragment productsFragment = ProductItemsFragment.newInstance(category);
         addFragment(productsFragment);
     }
 

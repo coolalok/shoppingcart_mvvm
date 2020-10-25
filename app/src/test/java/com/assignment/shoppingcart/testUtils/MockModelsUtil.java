@@ -1,24 +1,17 @@
-package com.assignment.shoppingcart.utils;
+package com.assignment.shoppingcart.testUtils;
 
 import com.assignment.shoppingcart.model.Product;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.UUID;
 
 public class MockModelsUtil {
 
-    public static Long generateRandomLong() {
-        return new Random().nextLong();
-    }
 
     public static String generateRandomString() {
         return UUID.randomUUID().toString();
     }
 
-    public static int generateRandomInt() {
-        return new Random().nextInt(80 - 65) + 65;
-    }
 
     public static Product createMockProduct() {
         Product product = new Product();
@@ -45,5 +38,15 @@ public class MockModelsUtil {
         arrProducts.add(product1);
         arrProducts.add(product2);
         return arrProducts;
+    }
+
+    public static String getTestCartData() {
+        return " \"products\": [\n" +
+                "                {\n" +
+                "                    \"id\": \"E_001\",\n" +
+                "                    \"name\": \"Television\",\n" +
+                "                    \"price\": 10000,\n" +
+                "                    \"image\": \"file:///android_asset/electronics/television.jpg\"\n" +
+                "                }]";
     }
 }
