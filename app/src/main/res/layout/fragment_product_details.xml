@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.assignment.shoppingcart.viewModel.fragment.ProductDetailViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/card_image"
+                android:layout_width="@dimen/details_image_length"
+                android:layout_height="@dimen/details_image_length"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:scaleType="center"
+                app:imageUrl="@{viewModel.ImageUrl}" />
+
+            <TextView
+                android:id="@+id/tvProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_image"
+                android:layout_marginLeft="@dimen/standard_margin"
+                android:text="@string/product_name_text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:id="@+id/tvProductNameValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvProductName"
+                android:layout_marginLeft="@dimen/standard_margin"
+                android:text="@{viewModel.ProductName}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <TextView
+                android:id="@+id/tvProductPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvProductNameValue"
+                android:layout_marginLeft="@dimen/standard_margin"
+                android:text="@string/product_price_text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:id="@+id/tvProductPriceValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvProductPrice"
+                android:layout_marginLeft="@dimen/standard_margin"
+                android:text="@{String.valueOf((Float)viewModel.Price)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <Button
+                android:id="@+id/cartButton"
+                style="@style/style_blue_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvProductPriceValue"
+                android:layout_margin="@dimen/standard_margin"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:onClick="@{viewModel.isAdded ? viewModel.onClickViewCart  : viewModel.onClickAddItem}"
+                android:text="@{viewModel.cartButtonText}" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+</layout>
+

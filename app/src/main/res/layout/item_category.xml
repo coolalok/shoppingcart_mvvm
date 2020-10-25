@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.assignment.shoppingcart.viewModel.fragment.CategoryViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_height"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:onClick="@{viewModel.onClickItem}"
+        android:paddingLeft="@dimen/standard_margin"
+        android:paddingRight="@dimen/standard_margin">
+
+        <ImageView
+            android:id="@+id/ivCategory"
+            android:layout_width="@dimen/list_image_length"
+            android:layout_height="@dimen/list_image_length"
+            android:layout_centerVertical="true"
+            app:imageUrl="@{viewModel.ImageUrl}" />
+
+        <TextView
+            android:id="@+id/tvCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/list_item_left_padding"
+            android:text="@{viewModel.CategoryName}"
+            android:textSize="@dimen/text_body" />
+
+
+    </RelativeLayout>
+</layout>
